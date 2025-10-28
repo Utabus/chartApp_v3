@@ -1,0 +1,84 @@
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  box-sizing: border-box;
+  height: 100vh;
+}
+
+.dashboard-item {
+  background: #f6f6f6;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  display: flex;
+  padding: 5px;
+  align-items: stretch;
+  justify-content: stretch;
+  overflow: hidden;
+}
+
+.dashboard-item > * {
+  width: 100%;
+  height: 100%;
+}
+.chart-wrapper {
+  background: #f5f3ff; /* nền sáng nhẹ để chart tím nổi bật */
+  border-radius: 16px;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+/* .chart-wrapper:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(130, 86, 233, 0.3);
+} */
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, #7f5eff, #a98aff);
+  padding: 5px 5px;
+  border-radius: 12px;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.chart-header h1 {
+  margin: 0;
+  font-size: 25px;
+  font-weight: 700;
+  color: #fff;
+    font-family: 'Poppins', sans-serif;
+}
+
+.chart-info {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.4;
+
+
+
+}
+
+.chart-info span {
+  color: #fff;
+  opacity: 0.95;
+    flex-shrink: 0;font-family: 'Poppins', sans-serif;
+}
+
+.chart-body {
+  background: #fff; /* nền trắng để chart nổi */
+  padding: 5px;
+  overflow: hidden;
+}
+
+.chart-body canvas {
+  width: 100% !important;
+  height: 100% !important;
+}

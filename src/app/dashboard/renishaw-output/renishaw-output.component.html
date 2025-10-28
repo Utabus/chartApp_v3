@@ -1,0 +1,15 @@
+<div class="chart-wrapper">
+  <div class="chart-header">
+    <h1>RENISHAW OUTPUT</h1>
+    <div class="chart-info">
+        <span> ODAY: {{ today | date:'dd/MM/yyyy' }}</span>
+    </div>
+    <div class="chart-info">
+         <span> PLAN: {{Actual}} / {{Target}}</span>
+    </div>
+  </div>
+
+  <div class="chart-body">
+    <canvas id="renishawChart"></canvas>
+  </div>
+</div>
