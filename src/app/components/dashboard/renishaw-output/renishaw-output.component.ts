@@ -2,10 +2,10 @@ import { CommonModule } from '@angular/common';
 import { Component, AfterViewInit, OnInit, inject } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import { DashboardService } from '../services/dashboard.service';
+import { DashboardService } from '../../../services/dashboard.service';
 import { filter, map, tap } from 'rxjs';
-import { DashboardResponse, RenishawData } from '../models/dashboard-response.model';
-import { LocalStorageService } from '../services/LocalStorage.service';
+import { DashboardResponse, RenishawData } from '../../../models/dashboard-response.model';
+import { LocalStorageService } from '../../../services/LocalStorage.service';
 
 
 Chart.register(...registerables, ChartDataLabels);

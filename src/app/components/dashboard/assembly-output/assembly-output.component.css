@@ -25,7 +25,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(135deg, #f5b900, #f5b900) !important;
+  background: linear-gradient(135deg, #025fae, #025fae) !important;
   padding: 10px 10px;
   border-radius: 12px;
   color: #fff;
@@ -36,7 +36,7 @@
   margin: 0;
   font-size: 25px;
   font-weight: 700;
-  color: #fff;
+  color: #ffffff !important;
 }
 
 .chart-info {
@@ -49,6 +49,6 @@
 }
 
 .chart-info span {
-  color: #fff;
+  color: #ffffff !important;
   opacity: 0.95;
 }

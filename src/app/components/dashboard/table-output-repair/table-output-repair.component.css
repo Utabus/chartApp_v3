@@ -1,43 +1,48 @@
-.shipment-container {
-  background: #f5f3ff;
+.chart-wrapper {
+  background: #f5f3ff; /* nền sáng nhẹ để chart tím nổi bật */
   border-radius: 16px;
   color: #333;
   display: flex;
   flex-direction: column;
   height: 100%;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
+  transition: all 0.3s ease;
 }
+
 
 .chart-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #00C6AE !important;
-  color: white;
+  background: linear-gradient(135deg, #025fae, #025fae) !important;
+  padding: 10px 10px;
   border-radius: 12px;
-    padding: 10px 10px;
+  color: #fff;
+  flex-shrink: 0;
 }
 
-.title {
-  font-size: 2rem;
-  font-weight: 700;
-  font-family: 'Poppins', sans-serif;
-}
-
-.plan-info {
-  font-family: 'Poppins', sans-serif;
-}
-
-.info-line {
-  font-weight: 500;
-  font-size: 1rem;
-}
-.shipment-header  h1 {
+.chart-header h1 {
   margin: 0;
   font-size: 25px;
   font-weight: 700;
   color: #fff;
 }
+
+.chart-info {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.4;
+
+
+
+}
+
+.chart-info span {
+  color: #fff;
+  opacity: 0.95;
+}
+
 .chart-body {
   background: #fff; /* nền trắng để chart nổi */
   padding: 5px;
@@ -48,4 +53,3 @@
   width: 100% !important;
   height: 100% !important;
 }
-

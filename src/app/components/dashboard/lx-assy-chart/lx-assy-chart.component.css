@@ -1,3 +1,16 @@
+
+
+
+.chart-body {
+  background: #fff; /* nền trắng để chart nổi */
+  padding: 5px;
+  overflow: hidden;
+}
+
+.chart-body canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
 .chart-wrapper {
   background: #f5f3ff; /* nền sáng nhẹ để chart tím nổi bật */
   border-radius: 16px;
@@ -10,23 +23,22 @@
   transition: all 0.3s ease;
 }
 
-
 .chart-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(135deg, #32CD32, #32CD32) !important;
+  background: linear-gradient(135deg, #025fae, #025fae) !important;
   padding: 10px 10px;
   border-radius: 12px;
   color: #fff;
-  flex-shrink: 0;
+  flex-shrink: 0;font-family: 'Poppins', sans-serif;
 }
 
 .chart-header h1 {
   margin: 0;
   font-size: 25px;
   font-weight: 700;
-  color: #fff;
+  color: #ffffff !important;
 }
 
 .chart-info {
@@ -39,17 +51,6 @@
 }
 
 .chart-info span {
-  color: #fff;
+  color: #ffffff !important;
   opacity: 0.95;
-}
-
-.chart-body {
-  background: #fff; /* nền trắng để chart nổi */
-  padding: 5px;
-  overflow: hidden;
-}
-
-.chart-body canvas {
-  width: 100% !important;
-  height: 100% !important;
 }

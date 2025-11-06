@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, ElementRef, ViewChild, AfterViewInit, OnInit, inject } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import { ShipmentData } from '../models/dashboard-response.model';
-import { DashboardService } from '../services/dashboard.service';
+import { ShipmentData } from '../../../models/dashboard-response.model';
+import { DashboardService } from '../../../services/dashboard.service';
 import { filter, tap } from 'rxjs';
 
 Chart.register(...registerables, ChartDataLabels);
@@ -82,7 +82,7 @@ export class ShipmentChartComponent implements AfterViewInit, OnInit {
           {
             label: 'Finished',
             data: finishedDataset,
-            backgroundColor: '#32CD32', // Xanh ở dưới
+            backgroundColor: '#30b3bfff', // Xanh ở dưới
             borderRadius: 8,
             stack: 'Stack 0',
           },
@@ -96,7 +96,7 @@ export class ShipmentChartComponent implements AfterViewInit, OnInit {
           {
             label: 'Finished (Today)',
             data: finishedTodayDataset,
-            backgroundColor: '#ff88caff', // Hồng full nếu done >= total
+            backgroundColor: '#ffacdaff', // Hồng full nếu done >= total
             borderRadius: 8,
             stack: 'Stack 0',
           }

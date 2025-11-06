@@ -40,6 +40,7 @@ export interface TableOutItem {
   name: string;
   total: number;
   err: number;
+  machine : string;
 }
 export interface DashboardResponse {
   statusCode: number;
@@ -83,4 +84,13 @@ export interface TableOutItem {
   name: string;
   total: number;
   err: number;
+}
+export interface LXAChartAssembly {
+  id: number;
+  code_NV: string;
+  name: string;
+  code_Name: string;
+  targetGr: number;
+  actualGr: number;
+  actualMember: number;
 }

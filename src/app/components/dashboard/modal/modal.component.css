@@ -1,0 +1,245 @@
+/* ====== FAB BUTTON ====== */
+.fab {
+  position: fixed;
+  bottom: 14px;
+  right: 14px;
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 54px;
+  height: 54px;
+  font-size: 22px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+  z-index: 1000;
+}
+.fab:hover {
+  transform: scale(1.1);
+}
+
+/* ====== OVERLAY ====== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 999;
+  animation: fadeIn 0.3s ease;
+}
+
+/* ====== MODAL ====== */
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  width: 85%;
+  max-width: 1000px;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  border-radius: 14px;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+/* ====== MODAL HEADER & FOOTER ====== */
+.modal-header,
+.modal-footer {
+  padding: 14px 20px;
+  background: #f8f9fa;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #555;
+}
+.close-btn:hover {
+  color: #000;
+}
+
+/* ====== MODAL BODY ====== */
+.modal-body {
+  padding: 20px;
+  flex-grow: 1;
+  overflow-y: auto;
+  font-size: 14px;
+}
+
+.modal-body::-webkit-scrollbar {
+  width: 8px;
+}
+.modal-body::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+/* ====== FORM ====== */
+.form-group {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+.form-group input {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 14px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
+}
+
+/* ====== TABLE WRAPPER ====== */
+.table-wrapper {
+  overflow-x: auto;
+  margin-top: 12px;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ====== TABLE ====== */
+.crud-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 10px;
+  min-width: 850px;
+  overflow: hidden;
+}
+
+.crud-table thead {
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: #fff;
+}
+
+.crud-table th {
+  padding: 10px 12px;
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  font-size: 14px;
+}
+
+.crud-table td {
+  padding: 8px 10px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+  vertical-align: middle;
+}
+
+/* Row alternating */
+.crud-table tbody tr:nth-child(even) {
+  background-color: #f9fafc;
+}
+
+/* Row hover */
+.crud-table tbody tr:hover {
+  background-color: #eef4ff;
+  transition: background-color 0.25s ease;
+}
+
+/* Input inside table */
+.crud-table input {
+  width: 95%;
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.crud-table input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 3px rgba(0, 123, 255, 0.4);
+}
+
+/* ====== BUTTONS ====== */
+.btn-add,
+.btn-delete,
+.btn-save,
+.btn-close {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: transform 0.15s ease, background-color 0.25s ease;
+  margin: 4px;
+}
+
+.btn-add {
+  background-color: #28a745;
+  color: white;
+}
+.btn-add:hover {
+  background-color: #218838;
+  transform: scale(1.05);
+}
+
+.btn-delete {
+  background-color: #dc3545;
+  color: white;
+}
+.btn-delete:hover {
+  background-color: #c82333;
+  transform: scale(1.05);
+}
+
+.btn-save {
+  background-color: #007bff;
+  color: white;
+}
+.btn-save:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.btn-close {
+  background-color: gray;
+  color: white;
+}
+.btn-close:hover {
+  background-color: #555;
+  transform: scale(1.05);
+}
+
+/* ====== ANIMATION ====== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translate(-50%, -48%); }
+  to { opacity: 1; transform: translate(-50%, -50%); }
+}

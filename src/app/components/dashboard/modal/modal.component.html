@@ -1,0 +1,56 @@
+<button class="fab" (click)="openModal()">
+  <fa-icon [icon]="faGear"></fa-icon>
+</button>
+
+<!-- Overlay -->
+<div class="modal-overlay" *ngIf="isOpen" (click)="closeModal()"></div>
+
+<!-- Modal -->
+<div class="modal" *ngIf="isOpen">
+  <div class="modal-header">
+    <h3>⚙️ Cài đặt Dashboard</h3>
+    <button class="close-btn" (click)="closeModal()">✖</button>
+  </div>
+
+  <div class="modal-body">
+    <div class="form-group">
+      <label for="assembly">ASSEMBLY OUTPUT</label>
+      <input id="assembly" type="text" placeholder="Nhập giá trị Assembly Output..." [(ngModel)]="assemblyOutput" />
+    </div>
+
+    <!-- Bảng CRUD -->
+    <h4>📋 Danh sách Assembly</h4>
+    <table class="crud-table">
+      <thead>
+        <tr>
+          <th>Mã NV</th>
+          <th>Tên</th>
+          <th>Mã Tên</th>
+          <th>TargetGr</th>
+          <th>ActualGr</th>
+          <th>ActualMember</th>
+          <th>Hành động</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of assemblies">
+          <td><input [(ngModel)]="item.code_NV" (ngModelChange)="markEdited(item)" /></td>
+          <td><input [(ngModel)]="item.name" (ngModelChange)="markEdited(item)" /></td>
+          <td><input [(ngModel)]="item.code_Name" (ngModelChange)="markEdited(item)" /></td>
+          <td><input type="number" [(ngModel)]="item.targetGr" (ngModelChange)="markEdited(item)" /></td>
+          <td><input type="number" [(ngModel)]="item.actualGr" (ngModelChange)="markEdited(item)" /></td>
+          <td><input type="number" [(ngModel)]="item.actualMember" (ngModelChange)="markEdited(item)" /></td>
+          <td><button class="btn-delete" (click)="deleteRow(item.id)">🗑</button></td>
+        </tr>
+      </tbody>
+
+    </table>
+
+    <button class="btn-add" (click)="addRow()">➕ Thêm dòng</button>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn-save" (click)="saveInfo()">💾 Lưu</button>
+    <button class="btn-close" (click)="closeModal()">Đóng</button>
+  </div>
+</div>
