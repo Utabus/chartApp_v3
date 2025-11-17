@@ -146,10 +146,16 @@ export class LxAssyChartComponent implements AfterViewInit, OnInit {
           title: {
             display: true,
             text: 'SPH (MTD)',
-            font: { size: 20, weight: 'bold' },
+            font: { size: 20, weight: 'bold' }, color: 'black',
           },
         },
         scales: {
+          x: {
+            ticks: {
+              color: '#000000ff',
+              font: { family: 'Roboto, sans-serif', size: 12 }
+            }
+          },
           y: {
             beginAtZero: true,
             max: 2.4,

@@ -129,7 +129,7 @@ export class ShipmentChartComponent implements AfterViewInit, OnInit {
               if (ctx.dataset.label === 'Finished (Today)' && finishedToday > 0)
                 return `   ${done}\n(${percent}%)`;
 
-              if (ctx.dataset.label === 'Finished' && finishedToday === 0 && done > 10)
+              if (ctx.dataset.label === 'Finished' && finishedToday === 0 && done > 0)
                 return `   ${done}\n(${percent}%)`;
 
               if (ctx.dataset.label === 'Unfinished' && unfinished > 0) 
@@ -169,13 +169,14 @@ export class ShipmentChartComponent implements AfterViewInit, OnInit {
                 family: 'Poppins',
 
 
-              }
+              },
+              color: 'black'
             }
           },
           y: {
             stacked: true,
             grid: { color: '#F0F0F0' },
-            ticks: { font: { family: 'Poppins', size: 12 } }
+            ticks: { font: { family: 'Poppins', size: 12 }, color: 'black' }
           }
         },
         animation: {

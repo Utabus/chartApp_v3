@@ -154,7 +154,7 @@ export class TableOutputRepairComponent implements AfterViewInit, OnInit {
             stacked: true,
             grid: { display: false },
             ticks: {
-              color: '#333',
+              color: '#000000ff',
               font: { size: 13 },
             },
           },

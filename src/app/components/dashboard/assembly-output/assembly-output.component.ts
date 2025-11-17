@@ -198,7 +198,7 @@ export class AssemblyOutputComponent implements AfterViewInit, OnInit {
             offset: false, // 👈 giúp cột đầu tiên dính sát trục Y
             grid: { display: false },
             ticks: {
-              color: '#555',
+              color: '#000000ff',
               font: { family: 'Roboto, sans-serif', size: 12 }
             }
           },
