@@ -3,7 +3,8 @@ import { Component, AfterViewInit, ElementRef, ViewChild, OnInit, inject } from 
 import { Chart, registerables } from 'chart.js';
 import { DashboardService } from '../../../services/dashboard.service';
 import { filter, tap } from 'rxjs';
-import { TableOutItem } from '../../../models/dashboard-response.model';
+import { LXAChartAssembly, TableOutItem } from '../../../models/dashboard-response.model';
+import { LXAChartAssemblyService } from '../../../services/lxa-chart-assembly.service';
 
 Chart.register(...registerables);
 
@@ -16,6 +17,22 @@ Chart.register(...registerables);
 })
 
 export class TableOutputRepairComponent implements AfterViewInit, OnInit {
+  constructor(
+    private assemblyService: LXAChartAssemblyService
+  ) { }
+  assemblies: (LXAChartAssembly)[] = [];
+
+
+  loadAssemblies(): void {
+    this.assemblyService.getAllAssembly().subscribe({
+      next: (data) => {
+        this.assemblies = data.map(item => ({ ...item, isEdited: false }));
+        console.log(this.assemblies);
+      },
+      error: (err) => console.error('❌ Lỗi khi lấy dữ liệu Assembly:', err)
+    });
+  }
+
   dashboardService = inject(DashboardService);
   tableOutItems: TableOutItem[] = [
     { id: '1', name: 'Machine A', total: 10, err: 2, machine: '12' },
@@ -39,6 +56,7 @@ export class TableOutputRepairComponent implements AfterViewInit, OnInit {
           this.updateChart(shipment);
         }
       });
+    this.loadAssemblies();
   }
 
 
@@ -54,31 +72,37 @@ export class TableOutputRepairComponent implements AfterViewInit, OnInit {
     if (!ctx) return;
 
     const grouped = Object.values(data)
-      // Bỏ KU ra khỏi bước cộng tổng
       .filter(item => item.machine !== 'KU')
-      // Gộp theo id, cộng total + err
       .reduce((acc, item) => {
         const existing = acc.find(x => x.id === item.id);
         if (existing) {
           existing.total += item.total;
-          // existing.err += item.err;
         } else {
           acc.push({ ...item });
         }
         return acc;
       }, [] as TableOutItem[]);
-
-    // Lấy riêng các dòng KU
     const kuItems = Object.values(data).filter(x => x.machine === 'KU');
-
-    // Gộp lại: các dòng thường trước, KU ở cuối
     const sorted: TableOutItem[] = [...grouped, ...kuItems];
-
     const labels = sorted.map((p: TableOutItem) => {
       let label = p.id + ' ' + p.name.split(' ').at(-1);
       if (p.machine === 'KU') label += ' (KU)';
       return label;
     });
+    const seen = new Set();
+
+    const targetData = sorted.map(item => {
+      if (seen.has(item.id)) {
+        return null; // gặp lại → bỏ
+      }
+
+      seen.add(item.id);
+
+      const found = this.assemblies.find(a => a.code_NV === item.id);
+      return found?.targetDay ?? 0;
+    });
+
+    console.log(targetData);
     const okData = sorted.map(x => x.total) ?? [3, 5, 3, 5];
     const ngData = sorted.map(x => x.err) ?? [2, 10, 0, 0];
 
@@ -94,7 +118,7 @@ export class TableOutputRepairComponent implements AfterViewInit, OnInit {
             borderColor: '#2969a0ff',
             borderWidth: 1,
             borderRadius: 6,
-            stack: 'stack1',
+            stack: 'stack1', order: 2,
             datalabels: {
               color: '#ffffffff',
               anchor: 'center',
@@ -113,7 +137,7 @@ export class TableOutputRepairComponent implements AfterViewInit, OnInit {
             borderColor: '#ff951bff',
             borderWidth: 1,
             borderRadius: 6,
-            stack: 'stack1',
+            stack: 'stack1', order: 3,
             datalabels: {
               color: '#ffffffff',
               anchor: 'center',
@@ -125,6 +149,19 @@ export class TableOutputRepairComponent implements AfterViewInit, OnInit {
               formatter: (value: any) => value > 0 ? value : ''
             }
           },
+          {
+            label: 'Target Member',
+            data: targetData,
+            type: 'line',
+            borderColor: 'green',
+            borderWidth: 3,
+            fill: false,
+            pointRadius: 0,
+            datalabels: { display: false },
+            order: 1,
+            pointStyle: 'line',
+          }
+
         ],
       },
       options: {
@@ -207,12 +244,22 @@ export class TableOutputRepairComponent implements AfterViewInit, OnInit {
     });
     const okData = sorted.map(x => x.total) ?? [3, 5, 3, 5];
     const ngData = sorted.map(x => x.err) ?? [2, 10, 0, 0];
+    const seen = new Set();
 
+    const targetData = sorted.map(item => {
+      if (seen.has(item.id)) {
+        return null;
+      }
+      seen.add(item.id);
+
+      const found = this.assemblies.find(a => a.code_NV === item.id);
+      return found?.targetDay ?? 0;
+    });
 
     this.chart.data.labels = labels;
     this.chart.data.datasets[0].data = okData; // OK dataset
     this.chart.data.datasets[1].data = ngData; // NG dataset
-
+    this.chart.data.datasets[2].data = targetData; // Target dataset
     // Gọi update() để refresh chart
     this.chart.update('active');
   }

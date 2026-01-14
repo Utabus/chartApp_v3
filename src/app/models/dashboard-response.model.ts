@@ -92,5 +92,6 @@ export interface LXAChartAssembly {
   code_Name: string;
   targetGr: number;
   actualGr: number;
+  targetDay: number;
   actualMember: number;
 }

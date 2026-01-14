@@ -168,3 +168,6 @@ export class LxAssyChartComponent implements AfterViewInit, OnInit {
   }
 
 }
+
+
+

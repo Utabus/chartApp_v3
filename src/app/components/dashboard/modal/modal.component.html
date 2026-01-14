@@ -29,6 +29,7 @@
           <th>TargetGr</th>
           <th>ActualGr</th>
           <th>ActualMember</th>
+          <th>Target Day</th>
           <th>Hành động</th>
         </tr>
       </thead>
@@ -40,13 +41,14 @@
           <td><input type="number" [(ngModel)]="item.targetGr" (ngModelChange)="markEdited(item)" /></td>
           <td><input type="number" [(ngModel)]="item.actualGr" (ngModelChange)="markEdited(item)" /></td>
           <td><input type="number" [(ngModel)]="item.actualMember" (ngModelChange)="markEdited(item)" /></td>
+          <td><input type="number" [(ngModel)]="item.targetDay" (ngModelChange)="markEdited(item)" /></td>
           <td><button class="btn-delete" (click)="deleteRow(item.id)">🗑</button></td>
         </tr>
       </tbody>
 
     </table>
 
-    <button class="btn-add" (click)="addRow()">➕ Thêm dòng</button>
+    <button class="btn-add" (click)="addRow()">➕ Thêm dòng</button>   
   </div>
 
   <div class="modal-footer">

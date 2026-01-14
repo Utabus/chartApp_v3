@@ -55,6 +55,7 @@ export class DashboardModalComponent implements OnInit {
       targetGr: 0,
       actualGr: 0,
       actualMember: 0,
+      targetDay: 0,
       isEdited: true // dòng mới chắc chắn là create
     });
   }
