@@ -50,7 +50,8 @@ export class ShipmentChartComponent implements AfterViewInit, OnInit {
     // Dữ liệu ví dụ
     const totalPlan = Data.target ?? [84, 120, 80, 94]; // tổng plan
     const finished = Data.actual ?? [84, 80, 52, 84]; // đã hoàn thành
-    const labels = Data.deliveryDate ?? ['13/10', '14/10', '15/10', '16/10'];
+    const customLabels = ['Today', 'Tomorrow', 'Tomorrow After', 'Two Days After'];
+    const labels = (Data.deliveryDate ?? ['13/10', '14/10', '15/10', '16/10']).map((date, i) => customLabels[i] || date);
 
     const finishedDataset: number[] = [];
     const unfinishedDataset: number[] = [];
@@ -80,6 +81,13 @@ export class ShipmentChartComponent implements AfterViewInit, OnInit {
         labels,
         datasets: [
           {
+            label: 'Finished (Today)',
+            data: finishedTodayDataset,
+            backgroundColor: '#ffacdaff', // Hồng full nếu done >= total
+            borderRadius: 8,
+            stack: 'Stack 0',
+          },
+          {
             label: 'Finished',
             data: finishedDataset,
             backgroundColor: '#30b3bfff', // Xanh ở dưới
@@ -93,13 +101,7 @@ export class ShipmentChartComponent implements AfterViewInit, OnInit {
             borderRadius: 8,
             stack: 'Stack 0',
           },
-          {
-            label: 'Finished (Today)',
-            data: finishedTodayDataset,
-            backgroundColor: '#ffacdaff', // Hồng full nếu done >= total
-            borderRadius: 8,
-            stack: 'Stack 0',
-          }
+
         ]
       },
       options: {
@@ -118,9 +120,9 @@ export class ShipmentChartComponent implements AfterViewInit, OnInit {
             },
             formatter: (value, ctx) => {
               const datasets = ctx.chart.data.datasets;
-              const finished = (datasets[0]?.data?.[ctx.dataIndex] as number) || 0;
-              const unfinished = (datasets[1]?.data?.[ctx.dataIndex] as number) || 0;
-              const finishedToday = (datasets[2]?.data?.[ctx.dataIndex] as number) || 0;
+              const finished = (datasets[1]?.data?.[ctx.dataIndex] as number) || 0;
+              const unfinished = (datasets[2]?.data?.[ctx.dataIndex] as number) || 0;
+              const finishedToday = (datasets[0]?.data?.[ctx.dataIndex] as number) || 0;
 
               const total = finished + unfinished + finishedToday;
               const done = finished + finishedToday;
@@ -132,7 +134,7 @@ export class ShipmentChartComponent implements AfterViewInit, OnInit {
               if (ctx.dataset.label === 'Finished' && finishedToday === 0 && done > 0)
                 return `   ${done}\n(${percent}%)`;
 
-              if (ctx.dataset.label === 'Unfinished' && unfinished > 0) 
+              if (ctx.dataset.label === 'Unfinished' && unfinished > 0)
                 return `${unfinished}`;
 
               return '';
@@ -192,7 +194,8 @@ export class ShipmentChartComponent implements AfterViewInit, OnInit {
     // --- Cập nhật dữ liệu ---
     const totalPlan = Data.target ?? [84, 120, 80, 94];
     const finished = Data.actual ?? [84, 80, 52, 84];
-    const labels = Data.deliveryDate ?? ['13/10', '14/10', '15/10', '16/10'];
+    const customLabels = ['Today', 'Tomorrow', 'Tomorrow After', 'Two Days After'];
+    const labels = (Data.deliveryDate ?? ['13/10', '14/10', '15/10', '16/10']).map((date, i) => customLabels[i] || date);
 
     const finishedDataset: number[] = [];
     const unfinishedDataset: number[] = [];
@@ -215,9 +218,9 @@ export class ShipmentChartComponent implements AfterViewInit, OnInit {
 
     // --- Cập nhật lại labels và datasets ---
     this.chart.data.labels = labels;
-    this.chart.data.datasets[0].data = finishedDataset;       // Finished
-    this.chart.data.datasets[1].data = unfinishedDataset;     // Unfinished
-    this.chart.data.datasets[2].data = finishedTodayDataset;  // Finished (Today)
+    this.chart.data.datasets[1].data = finishedDataset;       // Finished
+    this.chart.data.datasets[2].data = unfinishedDataset;     // Unfinished
+    this.chart.data.datasets[0].data = finishedTodayDataset;  // Finished (Today)
 
     // --- Cập nhật chart ---
     this.chart.update('active'); // hiệu ứng smooth mượt như dashboard chuyên nghiệp 😎

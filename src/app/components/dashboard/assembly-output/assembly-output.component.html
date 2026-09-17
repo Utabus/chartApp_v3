@@ -1,15 +1,15 @@
-
 <div class="chart-wrapper">
   <div class="chart-header">
     <h1>ASSEMBLY OUTPUT</h1>
     <div class="chart-info">
       <span> TODAY: {{ today | date:'dd/MM/yyyy' }}</span>
-    </div>  <div class="chart-info">
-      <span> PLAN: {{Actual}} / {{Target}}</span>
+    </div>
+    <div class="chart-info">
+      <span> ACT/PLAN: {{Actual}} / {{Target}}</span>
     </div>
   </div>
 
   <div class="chart-body">
-  <canvas #assemblyChart></canvas>
+    <canvas #assemblyChart></canvas>
   </div>
 </div>
